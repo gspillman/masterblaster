@@ -1,4 +1,6 @@
+profile: googlesearch
 browser:firefox
 version:26
 username:xxx
 password:Password
+---

@@ -1,17 +1,15 @@
 package com.bdt.webdriver;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import cucumber.api.junit.*;
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
-import org.openqa.selenium.*;
-import org.openqa.selenium.ie.*;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @Cucumber.Options(
@@ -22,11 +20,17 @@ import org.openqa.selenium.WebDriver;
 public class CukeRunner {
 
 	public static WebDriver driveer;
+	public static DesiredCapabilities browserCaps;
 	
 	@BeforeClass
 	public static void setUp() {
-		driveer = new FirefoxDriver();
-		driveer.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
+		browserCaps = new DesiredCapabilities();
+		browserCaps.setJavascriptEnabled(true);
+		browserCaps.setCapability("takesScreenshot", true);
+		browserCaps.setCapability("handleAlerts", true);
+		browserCaps.setCapability("acceptsSslCerts", true);
+
 	}
 	
 	@AfterClass

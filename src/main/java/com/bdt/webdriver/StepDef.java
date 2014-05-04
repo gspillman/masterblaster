@@ -1,17 +1,35 @@
 package com.bdt.webdriver;
 
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.*;
-import org.openqa.selenium.ie.*;
-import org.openqa.selenium.remote.DesiredCapabilities;
+
 import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.ie.*;
+import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.WebDriver;
 import org.junit.*;
+
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.Given;
 
 public class StepDef extends CukeRunner {
+	
+	@Given("^I open \"(.*?)\"$")
+	public void i_open(String arg1) {
+		
+		System.out.println(arg1);
+		
+		driveer = new FirefoxDriver();
+		
+		if (arg1 == "firefox") {
+			System.out.println(arg1);
+			driveer = new FirefoxDriver();
+			driveer.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		}
+		
+	}
 	
 	@Given("^I visit \"(.*?)\"$")
 	public void i_visit(String arg1) {
